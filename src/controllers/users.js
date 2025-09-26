@@ -1,3 +1,4 @@
+import fs from 'node:fs/promises';
 import {
   getSavedArticles,
   getUserInfoService,
@@ -9,6 +10,7 @@ import { getStoriesByAuthorId } from '../services/stories.js';
 import { STORIES_SORT_FIELDS } from '../constants/validation.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { updateUserById } from '../services/users.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
 export const onboardingController = async (req, res) => {
   const userId = req.user_id;
@@ -104,4 +106,43 @@ export const getUserCreatedStoriesController = async (req, res) => {
     message: 'Successfully found stories!',
     data,
   });
+};
+
+export const updateAvatarController = async (req, res, next) => {
+  try {
+    // так як в різних місцях зустрічаються req.user та req.user_id
+    const userId = req.user?._id ?? req.user_id;
+    if (!userId) {
+      return res.status(401).json({ status: 401, message: 'Unauthorized' });
+    }
+
+    if (!req.file) {
+      return res
+        .status(400)
+        .json({ status: 400, message: 'Avatar file is required' });
+    }
+
+    const localPath = req.file.path;
+
+    // Завантажуємо на Cloudinary
+    const { secure_url } = await saveFileToCloudinary(localPath, {
+      folder: 'avatars',
+      // за бажанням:
+      // transformation: [{ width: 320, height: 320, crop: 'fill', gravity: 'face' }],
+    });
+
+    // Прибираємо тимчасовий файл
+    await fs.unlink(localPath).catch(() => {});
+
+    // Оновлюємо юзера по полю "avatar" у схемі
+    const updatedUser = await updateUserById(userId, { avatar: secure_url });
+
+    return res.json({
+      status: 200,
+      message: 'Avatar updated!',
+      user: updatedUser,
+    });
+  } catch (err) {
+    next(err);
+  }
 };

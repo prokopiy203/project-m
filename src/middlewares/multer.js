@@ -12,3 +12,20 @@ const storage = multer.diskStorage({
 });
 
 export const upload = multer({ storage });
+
+const allowed = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+function avatarFileFilter(_req, file, cb) {
+  if (!allowed.has(file.mimetype)) {
+    return cb(
+      new Error('Unsupported file type (only JPG, PNG, WEBP, GIF)'),
+      false,
+    );
+  }
+  cb(null, true);
+}
+
+export const avatarUpload = multer({
+  storage,
+  fileFilter: avatarFileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
