@@ -3,6 +3,7 @@ const allowedOrigins = [
   'https://plantains-app-dev.vercel.app', // dev
   'https://plantains-app-client.vercel.app', //product
   'https://project-m-7jdz.onrender.com', //backend swagger
+  'https://project-m-m305.onrender.com/',
 ];
 
 export const corsOptions = {
