@@ -12,12 +12,6 @@
   "servers": [
     {
       "url": "https://plantains-app.onrender.com/api"
-    },
-    {
-      "url": "https://project-m-7jdz.onrender.com/api"
-    },
-    {
-      "url": "http://localhost:3000/api"
     }
   ],
   "tags": [
@@ -33,9 +27,7 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Register a new user",
         "operationId": "registerUser",
         "description": "Create a new user account with email and password",
@@ -45,11 +37,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "email",
-                  "password"
-                ],
+                "required": ["name", "email", "password"],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -83,9 +71,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Log in user",
         "operationId": "loginUser",
         "description": "Log in with email and password to get an authentication token",
@@ -95,10 +81,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email",
-                  "password"
-                ],
+                "required": ["email", "password"],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -125,9 +108,7 @@
     },
     "/auth/refresh": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Refresh authentication token",
         "operationId": "refreshToken",
         "description": "Refresh the user's authentication token using the refresh token",
@@ -159,9 +140,7 @@
     },
     "/auth/logout": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Log out user",
         "operationId": "logoutUser",
         "description": "Log out and invalidate user's session",
@@ -178,9 +157,7 @@
     },
     "/auth/request-reset-password": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Request a password reset link",
         "operationId": "requestResetPassword",
         "description": "Request a password reset link to be sent to the user's email",
@@ -190,9 +167,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email"
-                ],
+                "required": ["email"],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -218,9 +193,7 @@
     },
     "/auth/reset-password": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Reset the user's password",
         "operationId": "resetPassword",
         "description": "Reset the password using the provided token and new password",
@@ -230,10 +203,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "password",
-                  "token"
-                ],
+                "required": ["password", "token"],
                 "properties": {
                   "token": {
                     "type": "string",
@@ -266,9 +236,7 @@
     },
     "/auth/google/get-oauth-url": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Get Google OAuth authorization URL",
         "operationId": "getGoogleOAuthUrl",
         "description": "Get the OAuth URL to redirect the user to Google login page for authentication.",
@@ -288,9 +256,7 @@
     },
     "/auth/google/confirm-oauth": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Confirm Google OAuth authorization",
         "operationId": "confirmGoogleOAuth",
         "description": "Confirm Google OAuth authorization using the code obtained from Google OAuth process.",
@@ -300,9 +266,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "code"
-                ],
+                "required": ["code"],
                 "properties": {
                   "code": {
                     "type": "string",
@@ -325,9 +289,7 @@
     },
     "/stories": {
       "get": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Get list of stories",
         "operationId": "getStories",
         "description": "Fetch a list of stories with pagination, category filtering, and sorting.",
@@ -371,10 +333,7 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": [
-                "rate",
-                "date"
-              ]
+              "enum": ["rate", "date"]
             },
             "description": "Field to sort the stories by"
           },
@@ -383,10 +342,7 @@
             "name": "sortOrder",
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "enum": ["asc", "desc"]
             },
             "description": "Order to sort the stories (ascending or descending)"
           }
@@ -401,9 +357,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Create a new story",
         "operationId": "createStory",
         "description": "Add a new story to the platform with image, title, article, category, and author information.",
@@ -417,11 +371,7 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "title",
-                  "article",
-                  "category"
-                ],
+                "required": ["title", "article", "category"],
                 "properties": {
                   "img": {
                     "type": "string",
@@ -473,9 +423,7 @@
     },
     "/stories/byauthor/{id}": {
       "get": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Get list of stories by author",
         "operationId": "getStoriesByAuthor",
         "description": "Retrieve a list of stories by a specific author with pagination and sorting options.",
@@ -519,10 +467,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "rate",
-                "date"
-              ],
+              "enum": ["rate", "date"],
               "default": "date",
               "description": "Field to sort by.",
               "example": "rate"
@@ -534,10 +479,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "default": "asc",
               "description": "Order of sorting.",
               "example": "asc"
@@ -556,9 +498,7 @@
     },
     "/stories/story/{id}": {
       "get": {
-        "tags": [
-          "Story"
-        ],
+        "tags": ["Story"],
         "summary": "Get a story by id",
         "operationId": "getStoryById",
         "description": "Retrieve a single story by author unique ID",
@@ -585,9 +525,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Update a story",
         "description": "Updates an existing story. Only the user who created the story (`ownerId`) can edit it.\n",
         "operationId": "updateStory",
@@ -658,9 +596,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Delete a story by id",
         "operationId": "deleteStory",
         "description": "Delete a story by id. Returns 204 when the story is successfully deleted.",
@@ -699,9 +635,7 @@
     },
     "/stories/authors": {
       "get": {
-        "tags": [
-          "Authors"
-        ],
+        "tags": ["Authors"],
         "summary": "Get list of authors",
         "operationId": "getAuthors",
         "description": "Fetch a list of authors with pagination and sorting options.",
@@ -730,9 +664,7 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": [
-                "name"
-              ]
+              "enum": ["name"]
             },
             "description": "Field to sort authors by.",
             "example": "name"
@@ -742,10 +674,7 @@
             "name": "sortOrder",
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "enum": ["asc", "desc"]
             },
             "description": "The sorting order: ascending (asc) or descending (desc).",
             "example": "asc"
@@ -766,9 +695,7 @@
     },
     "/stories/authors/{id}": {
       "get": {
-        "tags": [
-          "Authors"
-        ],
+        "tags": ["Authors"],
         "summary": "Get author by ID",
         "operationId": "getAuthorById",
         "description": "Fetch author details by their unique ID.",
@@ -797,9 +724,7 @@
     },
     "/users/info": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get information about the authenticated user",
         "operationId": "getUserInfo",
         "description": "Fetches the information of the authenticated user (private route).",
@@ -820,9 +745,7 @@
     },
     "/users/saved-stories": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get saved stories of the authenticated user",
         "operationId": "getSavedStories",
         "description": "Retrieves a list of saved stories for the authenticated user with pagination and sorting options.",
@@ -859,10 +782,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "rate",
-                "date"
-              ],
+              "enum": ["rate", "date"],
               "example": "date"
             }
           },
@@ -873,10 +793,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "example": "desc"
             }
           }
@@ -896,9 +813,7 @@
     },
     "/users/created-stories": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get created (published) stories of the authenticated user",
         "operationId": "getCreatedStories",
         "description": "Retrieves a list of created (published) stories for the authenticated user with pagination and sorting options.",
@@ -935,10 +850,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "rate",
-                "date"
-              ],
+              "enum": ["rate", "date"],
               "example": "date"
             }
           },
@@ -949,10 +861,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
+              "enum": ["asc", "desc"],
               "example": "desc"
             }
           }
@@ -972,9 +881,7 @@
     },
     "/users/save-story/{id}": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Save a story to the saved list",
         "operationId": "saveStory",
         "description": "Add the specified story to the saved list of the authenticated user.",
@@ -1011,9 +918,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Remove a story from the saved list",
         "operationId": "removeSavedStory",
         "description": "Remove the specified story from the saved list of the authenticated user.",
@@ -1052,9 +957,7 @@
     },
     "/users/avatar": {
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Update user avatar",
         "operationId": "patchUserAvatar",
         "description": "Upload a new avatar image for the authenticated user.",
@@ -1069,9 +972,7 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "avatar"
-                ],
+                "required": ["avatar"],
                 "properties": {
                   "avatar": {
                     "type": "string",
@@ -1117,11 +1018,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1133,9 +1030,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "accessToken"
-                  ],
+                  "required": ["accessToken"],
                   "properties": {
                     "accessToken": {
                       "type": "string",
@@ -1154,11 +1049,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1170,16 +1061,11 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "user"
-                  ],
+                  "required": ["user"],
                   "properties": {
                     "user": {
                       "type": "object",
-                      "required": [
-                        "name",
-                        "email"
-                      ],
+                      "required": ["name", "email"],
                       "properties": {
                         "name": {
                           "type": "string",
@@ -1205,11 +1091,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1221,9 +1103,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1242,11 +1122,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1258,9 +1134,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1299,11 +1173,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1315,9 +1185,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1336,11 +1204,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1352,9 +1216,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1373,10 +1235,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message"
-              ],
+              "required": ["status", "message"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1425,11 +1284,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1441,9 +1296,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "accessToken"
-                  ],
+                  "required": ["accessToken"],
                   "properties": {
                     "accessToken": {
                       "type": "string",
@@ -1462,11 +1315,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1478,9 +1327,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1499,11 +1346,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1530,11 +1373,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1546,9 +1385,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1567,11 +1404,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1598,11 +1431,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1614,9 +1443,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1635,11 +1462,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1651,9 +1474,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -1754,11 +1575,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1823,11 +1640,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1839,12 +1652,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "_id",
-                    "title",
-                    "category",
-                    "ownerId"
-                  ],
+                  "required": ["_id", "title", "category", "ownerId"],
                   "properties": {
                     "_id": {
                       "type": "string",
@@ -1913,11 +1721,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1947,11 +1751,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -1981,11 +1781,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2050,11 +1846,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2066,9 +1858,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -2087,11 +1877,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2116,11 +1902,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2150,11 +1932,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2219,11 +1997,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2248,11 +2022,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2282,11 +2052,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2311,11 +2077,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "description": "HTTP status code of the response.",
@@ -2386,11 +2148,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "description": "HTTP status code of the response.",
@@ -2404,9 +2162,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "description": "Error message detailing the reason for the failure.",
@@ -2426,11 +2182,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "description": "HTTP status code of the response.",
@@ -2458,11 +2210,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "user"
-              ],
+              "required": ["status", "message", "user"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2512,10 +2260,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message"
-              ],
+              "required": ["status", "message"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2550,10 +2295,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message"
-              ],
+              "required": ["status", "message"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -2580,12 +2322,7 @@
     "schemas": {
       "story": {
         "type": "object",
-        "required": [
-          "_id",
-          "title",
-          "category",
-          "owner"
-        ],
+        "required": ["_id", "title", "category", "owner"],
         "properties": {
           "_id": {
             "description": "Story ID",
@@ -2640,12 +2377,7 @@
           "owner": {
             "description": "Author of the story",
             "type": "object",
-            "required": [
-              "_id",
-              "name",
-              "avatar",
-              "bio"
-            ],
+            "required": ["_id", "name", "avatar", "bio"],
             "properties": {
               "_id": {
                 "description": "Author ID",
@@ -2674,11 +2406,7 @@
       },
       "author": {
         "type": "object",
-        "required": [
-          "_id",
-          "name",
-          "bio"
-        ],
+        "required": ["_id", "name", "bio"],
         "properties": {
           "_id": {
             "type": "string",
@@ -2704,13 +2432,7 @@
       },
       "user": {
         "type": "object",
-        "required": [
-          "_id",
-          "name",
-          "email",
-          "password",
-          "bio"
-        ],
+        "required": ["_id", "name", "email", "password", "bio"],
         "properties": {
           "_id": {
             "description": "User identifier",
