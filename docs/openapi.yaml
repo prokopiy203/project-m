@@ -13,8 +13,6 @@ tags:
     description: Auth operations.
 servers:
   - url: https://plantains-app.onrender.com/api
-  - url: https://project-m-7jdz.onrender.com/api
-  - url: http://localhost:3000/api
 paths:
   /auth/register:
     post:
